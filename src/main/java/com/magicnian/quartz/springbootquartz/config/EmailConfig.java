@@ -1,4 +1,4 @@
-package com.magicnian.quartz.springbootquartz;
+package com.magicnian.quartz.springbootquartz.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

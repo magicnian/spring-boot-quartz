@@ -1,5 +1,7 @@
-package com.magicnian.quartz.springbootquartz;
+package com.magicnian.quartz.springbootquartz.util;
 
+import com.magicnian.quartz.springbootquartz.SpringUtil;
+import com.magicnian.quartz.springbootquartz.config.EmailConfig;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.mail.Session;
