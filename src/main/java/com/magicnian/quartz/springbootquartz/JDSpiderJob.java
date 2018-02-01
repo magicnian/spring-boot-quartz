@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,9 @@ import java.util.Map;
 @Slf4j
 public class JDSpiderJob {
 
-//    private static Map<String,String> headers = new HashMap<>();
+
+    @Autowired
+    private EmailUtil emailUtil;
 
     private static HttpConfig httpConfig;
 
@@ -69,7 +72,7 @@ public class JDSpiderJob {
             Date date = new Date();
             String dateStr = sdf.format(date);
             String text = "京东商城最新内存条均价：" + avargePrice + "  日期：" + dateStr;
-            EmailUtil.sendEmail(text);
+            emailUtil.sendEmail(text);
 
 
 //            CloseableHttpClient client = HttpClients.createDefault();

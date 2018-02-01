@@ -1,8 +1,8 @@
 package com.magicnian.quartz.springbootquartz.util;
 
-import com.magicnian.quartz.springbootquartz.SpringUtil;
-import com.magicnian.quartz.springbootquartz.config.EmailConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -14,19 +14,27 @@ import java.util.*;
 /**
  * Created by liunn on 2018/1/26.
  */
+@Component
 @Slf4j
 public class EmailUtil {
 
-    private static EmailConfig emailConfig;
+    @Value("${email.smtphost}")
+    private String smtHost;
 
-    static {
-        emailConfig = SpringUtil.getBean(EmailConfig.class);
-    }
+    @Value("${email.sendaccount}")
+    private String sendAccounts;
 
-    public static void sendEmail(String content) throws Exception {
+    @Value("${email.myaccount}")
+    private String myAccount;
+
+    @Value("${email.mypassword}")
+    private String myPassword;
+
+
+    public void sendEmail(String content) throws Exception {
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.smtp.host", emailConfig.getSmtphost());
+        props.setProperty("mail.smtp.host", smtHost);
         props.setProperty("mail.smtp.auth", "true");
 
         final String smtpPort = "465";
@@ -37,11 +45,11 @@ public class EmailUtil {
 
         Session session = Session.getInstance(props);
         session.setDebug(true);
-        String[] recevieMailAccountArr = emailConfig.getSendaccount().split(",");
-        MimeMessage message = createMimeMessage(session, emailConfig.getMyaccount(), Arrays.asList(recevieMailAccountArr), content);
+        String[] recevieMailAccountArr = sendAccounts.split(",");
+        MimeMessage message = createMimeMessage(session, myAccount, Arrays.asList(recevieMailAccountArr), content);
 
         Transport transport = session.getTransport();
-        transport.connect(emailConfig.getMyaccount(), emailConfig.getMypassword());
+        transport.connect(myAccount, myPassword);
         transport.sendMessage(message, message.getAllRecipients());
 
         transport.close();
