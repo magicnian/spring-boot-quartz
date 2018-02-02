@@ -153,6 +153,7 @@
 
 	<build>
         <resources>
+            <!-- 将resources文件夹下的properties文件复制到classes下-->
             <resource>
                 <filtering>true</filtering>
                 <directory>${project.basedir}/src/main/resources</directory>
@@ -161,6 +162,7 @@
                     <include>*.properties</include>
                 </includes>
             </resource>
+            <!--打包到生产环境时排除所有的properties文件-->
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
