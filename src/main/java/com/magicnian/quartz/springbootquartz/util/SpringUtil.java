@@ -1,4 +1,4 @@
-package com.magicnian.quartz.springbootquartz;
+package com.magicnian.quartz.springbootquartz.util;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

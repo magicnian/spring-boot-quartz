@@ -1,5 +1,6 @@
 package com.magicnian.quartz.springbootquartz.config;
 
+import com.magicnian.quartz.springbootquartz.annotation.ParamValidator;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 public class HttpConfig {
 
+    @ParamValidator(required = true)
     private String configId;
 
     private Integer retryTimes;
@@ -18,7 +20,7 @@ public class HttpConfig {
 
     private String userAgent = "Mozilla/5.0 (Windows NT 10.0, Win64, x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36";
 
-    private String succesCodes = "200";
+    private String successCodes = "200";
 
     private String charset = "utf-8";
 
@@ -36,8 +38,8 @@ public class HttpConfig {
         return this.getUseGzip() == 1;
     }
 
-    public HttpConfig(String configId) {
-        this.configId = configId;
-    }
+//    public HttpConfig(String configId) {
+//        this.configId = configId;
+//    }
 
 }

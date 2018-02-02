@@ -1,4 +1,4 @@
-package com.magicnian.quartz.springbootquartz;
+package com.magicnian.quartz.springbootquartz.job;
 
 import com.magicnian.quartz.springbootquartz.config.HttpConfig;
 import com.magicnian.quartz.springbootquartz.util.EmailUtil;
@@ -42,7 +42,9 @@ public class JDSpiderJob {
     private static final String url1 = "https://search.jd.com/search?keyword=%E5%86%85%E5%AD%98%E6%9D%A1&enc=utf-8&ev=123_76441%5E5181_76033%5E210_1558%5E";
 
     static {
-        httpConfig = new HttpConfig("jd-ram");
+//        httpConfig = new HttpConfig("jd-ram");
+        httpConfig = new HttpConfig();
+        httpConfig.setConfigId("jd-ram");
         httpConfig.setRetryTimes(3);
     }
 
