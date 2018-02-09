@@ -37,7 +37,7 @@ public class TestMq {
         public void run() {
             while(true){
                 try {
-                    producer.sendMessage("Jaycekon-MQ");
+                    producer.sendMessage("Spider-MQ");
                     Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

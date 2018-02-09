@@ -25,7 +25,7 @@ public class TestConsumer {
         public void run() {
             while(true){
                 try {
-                    consumer.getMessage("Jaycekon-MQ");
+                    consumer.getMessage("Spider-MQ");
                     Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

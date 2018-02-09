@@ -61,6 +61,7 @@ public class Producer {
                 messageProducer = session.createProducer(queue);
                 threadLocal.set(messageProducer);
             }
+
             while(true){
                 Thread.sleep(1000);
                 int num = count.getAndIncrement();
