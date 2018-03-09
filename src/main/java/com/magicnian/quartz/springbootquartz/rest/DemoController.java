@@ -25,7 +25,7 @@ public class DemoController {
     public String getByHand(){
         jdSpiderJob.spider();
         return "success";
-    }
+}
 
     @RequestMapping(value = "/paramtest",method = RequestMethod.POST)
     public ResponseModel paramtest(@RequestBody HttpConfig config)throws ServiceException{
