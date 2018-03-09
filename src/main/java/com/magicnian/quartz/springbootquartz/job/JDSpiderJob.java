@@ -102,7 +102,7 @@ public class JDSpiderJob {
         CloseableHttpClient client = HttpClientPool.getClient(httpConfig);
         Map<String, String> headers = new HashMap<>();
         headers.put("Host", "search.jd.com");
-        HttpCustomConnect httpCustomConnect = HttpCustomConnect.custom().connect(url1).httpClient(client).headers(headers).get();
+        HttpCustomConnect httpCustomConnect = HttpCustomConnect.custom().connect(url2).httpClient(client).headers(headers).get();
         HttpCustomConnect.Response response = httpCustomConnect.execute();
 
         Document document = Jsoup.parse(response.getBody());
