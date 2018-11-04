@@ -61,6 +61,10 @@ public class HttpClientFactory {
 
     }
 
+    public CloseableHttpClient getInstance() {
+        return getInstance(new HttpClientConfig());
+    }
+
     public CloseableHttpClient getInstance(HttpClientConfig config) {
         HttpClientBuilder clientBuilder = HttpClients.custom();
         clientBuilder.setConnectionManager(manager);
