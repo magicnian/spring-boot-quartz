@@ -2,6 +2,7 @@ package com.magicnian.quartz.springbootquartz.rest;
 
 import com.magicnian.quartz.springbootquartz.config.HttpConfig;
 import com.magicnian.quartz.springbootquartz.exception.ServiceException;
+import com.magicnian.quartz.springbootquartz.job.HSNJob;
 import com.magicnian.quartz.springbootquartz.job.JDSpiderJob;
 import com.magicnian.quartz.springbootquartz.response.ResponseModel;
 import com.magicnian.quartz.springbootquartz.service.CommonService;
@@ -21,14 +22,18 @@ public class DemoController {
     @Autowired
     private JDSpiderJob jdSpiderJob;
 
-    @RequestMapping("/getByHand")
-    public String getByHand(){
-        jdSpiderJob.spider();
-        return "success";
-}
+    @Autowired
+    private HSNJob hsnJob;
 
-    @RequestMapping(value = "/paramtest",method = RequestMethod.POST)
-    public ResponseModel paramtest(@RequestBody HttpConfig config)throws ServiceException{
+    @RequestMapping("/getByHand")
+    public String getByHand() {
+//        jdSpiderJob.spider();
+        hsnJob.run();
+        return "success";
+    }
+
+    @RequestMapping(value = "/paramtest", method = RequestMethod.POST)
+    public ResponseModel paramtest(@RequestBody HttpConfig config) throws ServiceException {
         CommonService.validParam(config);
 
         return new ResponseModel();

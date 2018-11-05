@@ -61,11 +61,11 @@ public class HttpClientFactory {
 
     }
 
-    public CloseableHttpClient getInstance() {
+    public static CloseableHttpClient getInstance() {
         return getInstance(new HttpClientConfig());
     }
 
-    public CloseableHttpClient getInstance(HttpClientConfig config) {
+    public static CloseableHttpClient getInstance(HttpClientConfig config) {
         HttpClientBuilder clientBuilder = HttpClients.custom();
         clientBuilder.setConnectionManager(manager);
 
@@ -79,18 +79,27 @@ public class HttpClientFactory {
             clientBuilder.setRedirectStrategy(new LaxRedirectStrategy());
         }
 
-        RequestConfig.Builder requestBuilder = RequestConfig.custom()
-                .setConnectionRequestTimeout(30000)
-                .setSocketTimeout(30000)
-                .setConnectTimeout(30000)
-                .setRedirectsEnabled(config.isAutoRedirect());
-
-        if (config.getProxy() != null) {
-            requestBuilder.setProxy(config.getProxy());
-        }
-
-        clientBuilder.setDefaultRequestConfig(requestBuilder.build());
+//        clientBuilder.setDefaultRequestConfig(generateRequestConfig(config));
 
         return clientBuilder.build();
     }
+
+//    public static RequestConfig generateRequestConfig(HttpClientConfig config) {
+//        RequestConfig.Builder requestBuilder = RequestConfig.custom();
+//
+//        if (config.getTimeout() != 0) {
+//            requestBuilder.setConnectTimeout(config.getTimeout())
+//                    .setSocketTimeout(config.getTimeout())
+//                    .setConnectionRequestTimeout(config.getTimeout());
+//        }
+//
+//        if (config.isAutoRedirect()) {
+//            requestBuilder.setRedirectsEnabled(config.isAutoRedirect());
+//        }
+//
+//        if (config.getProxy() != null) {
+//            requestBuilder.setProxy(config.getProxy());
+//        }
+//        return requestBuilder.build();
+//    }
 }

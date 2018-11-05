@@ -2,6 +2,7 @@ package com.magicnian.quartz.springbootquartz.util.http;
 
 import lombok.Data;
 import org.apache.http.HttpHost;
+import org.apache.http.client.config.CookieSpecs;
 
 /**
  * @Auther: liuniannian
@@ -10,6 +11,9 @@ import org.apache.http.HttpHost;
  */
 @Data
 public class HttpClientConfig {
+
+    //超时时间
+    private int timeout;
 
     //重试次数
     private int retryTimes;
@@ -22,6 +26,9 @@ public class HttpClientConfig {
 
     //编码
     private String charset = "utf-8";
+
+    //cookie策略
+    private String cookieSpec = CookieSpecs.STANDARD;
 
     //是否自动跳转
     private boolean autoRedirect = false;
