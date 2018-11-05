@@ -102,6 +102,16 @@ public class HttpCrawler {
         return this;
     }
 
+    public HttpCrawler timeout(int timeout) {
+        this.request.setTimeout(timeout);
+        return this;
+    }
+
+    public HttpCrawler autoRedirect(boolean autoRedirect) {
+        this.request.setAutoRedirect(autoRedirect);
+        return this;
+    }
+
 
     public enum Method {
         GET, POST
