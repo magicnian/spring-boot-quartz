@@ -119,7 +119,7 @@ public class HttpCrawler {
         private Method method = Method.GET;
         private boolean isJson;
         private HttpHost proxy;
-        private int timeout = 30000;
+        private int timeout;
         private boolean autoRedirect = true;
         private String cookieSpecs = CookieSpecs.STANDARD;
         private String charset = "utf-8";
@@ -187,7 +187,7 @@ public class HttpCrawler {
                 CloseableHttpResponse response = client.execute(hrb);
                 httpEntity = response.getEntity();
                 httpClientResponse.setResponseBytes(EntityUtils.toByteArray(httpEntity));
-                httpClientResponse.setBodyStr(getResposneString(httpClientResponse.getResponseBytes()));
+                httpClientResponse.setBodyStr(getResposneString(httpClientResponse.getResponseBytes(), req));
                 httpClientResponse.setStatusCode(response.getStatusLine().getStatusCode());
                 httpClientResponse.setBasicCookieStore(req.getCookieStore());
             } finally {
@@ -199,8 +199,8 @@ public class HttpCrawler {
         return httpClientResponse;
     }
 
-    private String getResposneString(byte[] resposneBytes) throws Exception {
-        return new String(resposneBytes, config.getCharset());
+    private String getResposneString(byte[] resposneBytes, Request req) throws Exception {
+        return new String(resposneBytes, req.getCharset());
     }
 
 
