@@ -50,7 +50,7 @@ public class JDSpiderJob {
         httpConfig.setRetryTimes(3);
     }
 
-    @Scheduled(cron = "0 0 20 * * ? ")
+//    @Scheduled(cron = "0 0 20 * * ? ")
     public void spider() {
         try {
 
